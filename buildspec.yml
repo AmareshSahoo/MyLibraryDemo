@@ -3,7 +3,7 @@ version: 0.2
 env:
     variables:
         CACHE_CONTROL: "86400"
-        S3_BUCKET: "{{s3_bucket_url}}"
+        S3_BUCKET: "https://s3.console.aws.amazon.com/s3/buckets/angularlibrary?region=ap-south-1"
         BUILD_FOLDER: "dist"
 phases:
   install:
