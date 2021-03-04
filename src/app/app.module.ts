@@ -1,17 +1,25 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RegisterDynamicFormComponent } from './register-dynamic-form/register-dynamic-form.component';
+// import { NgDynamicFormModule } from 'projects/ng-dynamic-form/src/public-api';
+import { HttpClientModule } from '@angular/common/http';
+import { NgDynamicFormModule } from 'ng-json-powered-form';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    RegisterDynamicFormComponent,
+    AppComponent,
   ],
   imports: [
+    NgDynamicFormModule,
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
+  exports: [RegisterDynamicFormComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

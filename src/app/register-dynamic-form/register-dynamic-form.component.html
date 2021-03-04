@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header text-center">
+            JSON POWERED DYNAMIC FORMM
+        </div>
+        <div class="card-body">
+            <ng-dynamic-form (formChange)="OnformChange($event)" (onFormSubmit)="onFormSubmit($event)" [form]="form" [formData]="regdFormData"></ng-dynamic-form>
+        </div>
+    </div>
+</div>
