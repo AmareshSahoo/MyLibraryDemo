@@ -1,5 +1,4 @@
 
-// import { formConfig } from 'projects/ng-dynamic-form/src/public-api';
 import { formConfig } from 'ng-json-powered-form'
 
 export const RegisterFormData: formConfig[] = [

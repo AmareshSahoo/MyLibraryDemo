@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RegisterFormData } from "../shared/registerData";
 import { FormGroup } from "@angular/forms";
-// import { TemplateService } from 'projects/ng-dynamic-form/src/public-api';
 import { Ipost, IUser } from '../shared/Ipost';
 import { Observable } from 'rxjs';
 import { TemplateService } from 'ng-json-powered-form';

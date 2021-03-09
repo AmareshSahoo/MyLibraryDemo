@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RegisterDynamicFormComponent } from './register-dynamic-form/register-dynamic-form.component';
-// import { NgDynamicFormModule } from 'projects/ng-dynamic-form/src/public-api';
 import { HttpClientModule } from '@angular/common/http';
 import { NgDynamicFormModule } from 'ng-json-powered-form';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
