@@ -1,24 +1,22 @@
 version: 0.2
-
-env:
-    variables:
-        CACHE_CONTROL: "86400"
-        S3_BUCKET: "{{S3_BUCKET}}"
-        BUILD_FOLDER: "dist"
+environment_variables:
+    plaintext:
+        S3_BUCKET: "mylib.amarcreation.xyz"
+        BUILD_ENV: "prod"
 phases:
-  install:
-    runtime-versions:
-        nodejs: 10
-    commands:
-        - echo Installing source NPM dependencies...
-        - npm install
-        - npm install -g @angular/cli
-        - echo NPM dependencies Success
-  build:
-    commands:
-        - echo Build started
-        - ng build
-        - echo Build Success
+    install:
+        commands:
+            - echo Installing source NPM dependencies...
+            - npm install
+            - npm install -g @angular/cli
+    build:
+        commands:
+            - echo Build started on `date`
+            - ng build --env=${BUILD_ENV}
+    post_build:
+         commands:
+            - aws s3 cp dist s3://${S3_BUCKET} --recursive
+            - echo Build completed on `date`
 artifacts:
     files:
         - '**/*'
