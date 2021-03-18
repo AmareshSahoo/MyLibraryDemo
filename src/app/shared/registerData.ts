@@ -62,25 +62,6 @@ export const RegisterFormData: formConfig[] = [
     order: 1
   },
   {
-    controlName: 'Address',
-    controlType: 'textarea',
-    valueType: 'text',
-    placeholder: 'Enter Your Address',
-    hidden: false,
-    validators: {
-      required: true,
-      minlength: 5
-    },
-    defaultValue: "",
-    listeners: {
-      change: {
-        methodName: "onChangeAddress",
-        param: 'Data'
-      },
-    },
-    order: 6
-  },
-  {
     controlName: 'Gender',
     placeholder: 'Select gender',
     controlType: 'select',
@@ -149,6 +130,29 @@ export const RegisterFormData: formConfig[] = [
       required: true
     },
     order: 5
+  },
+  {
+    controlName: 'Address',
+    controlType: 'textarea',
+    valueType: 'text',
+    placeholder: 'Enter Address',
+    hidden: false,
+    validators: {
+      required: true,
+      minlength: 5
+    },
+    defaultValue: "",
+    listeners: {
+      click: {
+        methodName: "onClickAddress",
+        param: 'Data'
+      },
+      change: {
+        methodName: "onChangeAddress",
+        param: 'Data'
+      },
+    },
+    order: 6
   },
   {
     controlName: 'SubmitButton',

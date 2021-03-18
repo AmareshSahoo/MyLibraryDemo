@@ -3,8 +3,9 @@ import { RegisterFormData } from "../shared/registerData";
 import { FormGroup } from "@angular/forms";
 import { Ipost, IUser } from '../shared/Ipost';
 import { Observable } from 'rxjs';
-import { TemplateService } from 'ng-json-powered-form';
-
+import { formConfig, TemplateService } from 'ng-json-powered-form';
+import { HttpClient } from "@angular/common/http";
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: "app-register-dynamic-form",
@@ -13,16 +14,22 @@ import { TemplateService } from 'ng-json-powered-form';
 })
 
 export class RegisterDynamicFormComponent implements OnInit {
-  constructor(
-    private tempservice: TemplateService
-  ) {
-    this.tempservice.generateMethods(this.regdFormData, this);
-  }
-
-  regdFormData = RegisterFormData;
+  regdFormData: formConfig[] = [];
   form:any;
+  constructor(
+    private tempservice: TemplateService,
+    private http: HttpClient
+  ) {}
+
+
   ngOnInit() {
-    console.log("regdFormData---------.....", this.regdFormData);
+    this.http.get('./assets/mockData.json').pipe(
+      map((res:any) => res.fields)
+    ).subscribe((fields:formConfig[])=>{
+      this.regdFormData = fields;
+      console.log("regdFormData---------.....", this.regdFormData);
+    })
+    this.tempservice.generateMethods(this.regdFormData, this);
   }
 
   OnformChange(event:any) {
