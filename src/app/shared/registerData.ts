@@ -72,6 +72,7 @@ export const RegisterFormData: formConfig[] = [
       optionName: 'Female',
       value: 'female'
     }],
+    selectOptionType:"multi",
     validators: {
       required: true
     },
