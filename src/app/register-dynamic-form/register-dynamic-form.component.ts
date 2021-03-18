@@ -23,12 +23,14 @@ export class RegisterDynamicFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.http.get('./assets/mockData.json').pipe(
-      map((res:any) => res.fields)
-    ).subscribe((fields:formConfig[])=>{
-      this.regdFormData = fields;
-      console.log("regdFormData---------.....", this.regdFormData);
-    })
+    // this.http.get('./assets/mockData.json').pipe(
+    //   map((res:any) => res.fields)
+    // ).subscribe((fields:formConfig[])=>{
+    //   this.regdFormData = fields;
+    //   console.log("regdFormData---------.....", this.regdFormData);
+    // })
+
+    this.regdFormData = RegisterFormData;
     this.tempservice.generateMethods(this.regdFormData, this);
   }
 
