@@ -7,6 +7,7 @@ import { formConfig, TemplateService } from 'ng-json-powered-form';
 import { HttpClient } from "@angular/common/http";
 import { UserTemplate } from "../shared/userTemplate";
 import { map } from 'rxjs/operators';
+import { CryptoService } from "../services/crypto.service";
 
 @Component({
   selector: "app-register-dynamic-form",
@@ -19,24 +20,38 @@ export class RegisterDynamicFormComponent implements OnInit {
   form: any;
   constructor(
     private tempservice: TemplateService,
-    private http: HttpClient
+    private http: HttpClient,
+    private crypto: CryptoService
   ) { }
 
 
   ngOnInit() {
     const params = {
-      "collection": "Template",
-      "params": {
-        "query": { id: 12001 }
+      collection: "Template",
+      params: {
+        query: { id: 12001 }
       }
     }
-    this.http.post('https://amarcreation.xyz/api/fetchData', params).pipe(
+    this.http.post('https://amarcreation.xyz/api/fetch', params).pipe(
       map((res: any) => res['data'][0]['fields'])
     ).subscribe((fields: formConfig[]) => {
       console.log("fields---------.....", fields);
       this.regdFormData = fields;
       this.tempservice.generateMethods(this.regdFormData, this);
     })
+
+
+    const data = {
+      collection: "Employee",
+      params: {
+        query: { position: "Developer" }
+      }
+    }
+
+    this.http.post("https://amarcreation.xyz/api/fetch", { payload: this.crypto.encrypt(JSON.stringify(data)) }).subscribe(data => {
+      console.log("TETS", data)
+    })
+
     this.testCrypto();
   }
 
@@ -97,7 +112,7 @@ export class RegisterDynamicFormComponent implements OnInit {
       data: event.value
     }
     if (event.valid) {
-      this.http.post("https://amarcreation.xyz/api/insertData", params).subscribe(res => {
+      this.http.post("https://amarcreation.xyz/api/insert", params).subscribe(res => {
         console.log("res====", res)
       })
     }
@@ -273,7 +288,7 @@ export class RegisterDynamicFormComponent implements OnInit {
         ]
       }
     }
-    this.http.post("https://amarcreation.xyz/api/insertData", params2).subscribe(res => {
+    this.http.post("https://amarcreation.xyz/api/insert", params2).subscribe(res => {
       console.log("res====", res)
     })
   }
@@ -289,7 +304,7 @@ export class RegisterDynamicFormComponent implements OnInit {
       })
     }
     this.http.post("https://amarcreation.xyz/api/crypto", data).subscribe(res => {
-      console.log("RES===", res)
+      console.log("Encrypt===", res)
     })
   }
 }
