@@ -1,7 +1,7 @@
 <div class="container mt-5" *ngIf="regdFormData && regdFormData.length > 0">
     <div class="card">
         <div class="card-header text-center">
-            JSON POWERED FORM DEMO BY AMARESH KUMAR SAHOO
+            JSON POWERED FORM DEMO BY AMARESH SAHOO
         </div>
         <div class="card-body">
             <ng-dynamic-form (formChange)="OnformChange($event)" (onFormSubmit)="onFormSubmit($event)" [form]="form" [formData]="regdFormData"></ng-dynamic-form>
